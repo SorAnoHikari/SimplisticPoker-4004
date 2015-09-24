@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toList;
  * Created by Tony on 9/23/2015.
  */
 public class PokerServices {
+    //<editor-fold desc="Input validation methods">
     public boolean IsHandValid(List<String> hand) {
         if (hand.size() != 6)
             return false;
@@ -40,8 +41,19 @@ public class PokerServices {
     }
 
     public boolean IsHandContainsDuplicates(List<String> hand, List<List<String>> handList) {
-        return true;
+        Set<String> handSet = new HashSet<String>(hand);
+        if (handSet.size() != hand.size())
+            return true;
+        for(String card : hand) {
+            for (List<String> otherHand : handList) {
+                if (otherHand.contains(card)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+    //</editor-fold>
 
     public static List<List<String>> SortHandsByWinningOrder(List<List<String>> handsList) {
         List<List<String>> sortedHand = new ArrayList<List<String>>();
@@ -59,13 +71,15 @@ public class PokerServices {
         return sortedHand;
     }
 
-    private void checkHandForRoyalFlush(PokerHand pokerHand) {
+    public boolean CheckHandForRoyalFlush(PokerHand pokerHand) {
         if (pokerHand.getHandCombination() != null)
-            return;
+            return false;
 
         if (isAllCardsSameSuit(pokerHand) && isRanksInRoyalFlushFormat(pokerHand)) {
             pokerHand.setHandCombination(HandCombination.ROYAL_FLUSH);
+            return true;
         }
+        return false;
     }
 
     private boolean isAllCardsSameSuit(PokerHand pokerHand) {
@@ -80,5 +94,9 @@ public class PokerServices {
     private boolean isRanksInRoyalFlushFormat(PokerHand pokerHand) {
         List<Rank> ranks = pokerHand.getCards().stream().map(Card::getRank).collect(toList());
         return ranks.contains(Rank.ACE) && ranks.contains(Rank.KING) && ranks.contains(Rank.QUEEN) && ranks.contains(Rank.JACK) && ranks.contains(Rank.TEN);
+    }
+
+    public boolean CheckHandForFlush(PokerHand pokerHand) {
+        return false;
     }
 }

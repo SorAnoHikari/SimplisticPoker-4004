@@ -33,7 +33,7 @@ public class GameController {
                 System.out.println("enter a hand: ");
                 String input = in.nextLine();
                 List<String> inputList = Arrays.asList(input.split(" "));
-                while (!pokerServices.IsHandValid(inputList)) {
+                while (!pokerServices.IsHandValid(inputList) && !pokerServices.IsHandContainsDuplicates(inputList, handsList)) {
                     System.out.println("Invalid input, please enter a hand: ");
                     input = in.nextLine();
                     inputList = Arrays.asList(input.split(" "));
