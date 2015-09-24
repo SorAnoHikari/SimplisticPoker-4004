@@ -96,7 +96,28 @@ public class PokerServices {
         return ranks.contains(Rank.ACE) && ranks.contains(Rank.KING) && ranks.contains(Rank.QUEEN) && ranks.contains(Rank.JACK) && ranks.contains(Rank.TEN);
     }
 
+    public boolean CheckHandForStraightFlush(PokerHand pokerHand) {
+        return false;
+    }
+
     public boolean CheckHandForFlush(PokerHand pokerHand) {
         return false;
     }
+
+    public boolean CheckHandForStraight(PokerHand pokerHand) {
+        return false;
+    }
+
+    public boolean CheckHandForFourOfAKind(PokerHand pokerHand) {
+        return false;
+    }
+
+    public boolean CheckHandForThreeOfAKind(PokerHand pokerHand) {
+        return false;
+    }
+
+    public boolean CheckHandForPair(PokerHand pokerHand) {
+        return false;
+    }
+
 }

@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class HandScoringTests {
     @Test
-    public void IsHandRoyalFlush() {
+    public void IsRoyalFlush() {
         final PokerServices pokerServices = new PokerServices();
 
         PokerHand pokerHand = new PokerHand();
@@ -31,7 +31,23 @@ public class HandScoringTests {
     }
 
     @Test
-    public void IsHandFlush() {
+    public void IsStraightFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.TWO, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FOUR, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
+        assertThat(pokerServices.CheckHandForStraightFlush(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsStraight() {
         final PokerServices pokerServices = new PokerServices();
 
         PokerHand pokerHand = new PokerHand();
@@ -43,7 +59,86 @@ public class HandScoringTests {
         cards.add(new Card(Rank.FIVE, Suit.HEARTS));
         pokerHand.setCards(cards);
 
+        assertThat(pokerServices.CheckHandForStraight(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.QUEEN, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
         assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
     }
 
+    @Test
+    public void IsFourOfAKind() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
+        assertThat(pokerServices.CheckHandForFourOfAKind(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsThreeOfAKind() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
+        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.HEARTS));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
+        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsSingle() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.QUEEN, Suit.DIAMONDS));
+        cards.add(new Card(Rank.THREE, Suit.HEARTS));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        pokerHand.setCards(cards);
+
+        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+    }
 }

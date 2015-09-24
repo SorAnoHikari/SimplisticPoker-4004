@@ -7,13 +7,14 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
  */
 public enum HandCombination {
     SINGLE(1),
-    DOUBLE(2),
-    TRIPLE(3),
+    PAIR(2),
+    THREE_OF_A_KIND(3),
     FULL_HOUSE(4),
     FOUR_OF_A_KIND(5),
     STRAIGHT(6),
     FLUSH(7),
-    ROYAL_FLUSH(8);
+    STRAIGHT_FLUSH(8),
+    ROYAL_FLUSH(9);
 
     private int value;
 
