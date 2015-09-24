@@ -5,7 +5,9 @@ import Models.Card;
 import Models.PokerHand;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
@@ -35,6 +37,10 @@ public class PokerServices {
         catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public boolean IsHandContainsDuplicates(List<String> hand, List<List<String>> handList) {
+        return true;
     }
 
     public static List<List<String>> SortHandsByWinningOrder(List<List<String>> handsList) {

@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,5 +27,20 @@ public class InputValidationTest {
         List<String> hand = Arrays.asList(input.split(" "));
 
         assertThat(pokerServices.IsHandValid(hand), is(true));
+    }
+
+    @Test
+    public void CanDetectDuplicateCards() {
+        final PokerServices pokerServices = new PokerServices();
+        String input = "1 AceSpades TwoSpades ThreeSpades FourSpades FiveSpades";
+        String oldInput = "1 AceSpades SixSpades SevenSpades EightSpades NineSpades";
+
+        List<String> hand = Arrays.asList(input.split(" "));
+        List<String> oldHand = Arrays.asList(oldInput.split(" "));
+
+        List<List<String>> handList = new ArrayList<>();
+        handList.add(oldHand);
+
+        assertThat(pokerServices.IsHandContainsDuplicates(hand, handList), is(true));
     }
 }

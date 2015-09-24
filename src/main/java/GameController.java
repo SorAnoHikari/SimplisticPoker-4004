@@ -39,8 +39,6 @@ public class GameController {
                     inputList = Arrays.asList(input.split(" "));
                 }
 
-
-
                 String playerId = inputList.get(0);
                 handsList.add(inputList);
                 numberOfHandsEntered++;
