@@ -45,6 +45,6 @@ public class PokerHand implements Comparable<PokerHand>{
 
     @Override
     public int compareTo(PokerHand o) {
-        return this.getHandCombination().compareTo(o.getHandCombination());
+        return o.getHandCombination().compareTo(this.getHandCombination());
     }
 }
