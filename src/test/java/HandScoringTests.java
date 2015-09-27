@@ -20,11 +20,11 @@ public class HandScoringTests {
 
         PokerHand pokerHand = new PokerHand();
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Rank.ACE, Suit.SPADES));
         cards.add(new Card(Rank.KING, Suit.SPADES));
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
         cards.add(new Card(Rank.QUEEN, Suit.SPADES));
-        cards.add(new Card(Rank.JACK, Suit.SPADES));
         cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.JACK, Suit.SPADES));
         pokerHand.setCards(cards);
 
         assertThat(pokerServices.CheckHandForRoyalFlush(pokerHand), is(true));
@@ -107,7 +107,7 @@ public class HandScoringTests {
         cards.add(new Card(Rank.FIVE, Suit.SPADES));
         pokerHand.setCards(cards);
 
-        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+        assertThat(pokerServices.CheckHandForThreeOfAKind(pokerHand), is(true));
     }
 
     @Test
@@ -123,7 +123,7 @@ public class HandScoringTests {
         cards.add(new Card(Rank.FIVE, Suit.SPADES));
         pokerHand.setCards(cards);
 
-        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+        assertThat(pokerServices.CheckHandForPair(pokerHand), is(true));
     }
 
     @Test
@@ -139,6 +139,6 @@ public class HandScoringTests {
         cards.add(new Card(Rank.FIVE, Suit.SPADES));
         pokerHand.setCards(cards);
 
-        assertThat(pokerServices.CheckHandForFlush(pokerHand), is(true));
+        assertThat(pokerServices.CheckHandForSingle(pokerHand), is(true));
     }
 }

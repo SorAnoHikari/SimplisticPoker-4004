@@ -6,15 +6,16 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
  * Created by Tony on 9/20/2015.
  */
 public enum HandCombination {
-    SINGLE(1),
-    PAIR(2),
-    THREE_OF_A_KIND(3),
-    FULL_HOUSE(4),
-    FOUR_OF_A_KIND(5),
-    STRAIGHT(6),
-    FLUSH(7),
-    STRAIGHT_FLUSH(8),
-    ROYAL_FLUSH(9);
+    HIGH_CARD(1),
+    ONE_PAIR(2),
+    TWO_PAIR(3),
+    THREE_OF_A_KIND(4),
+    STRAIGHT(5),
+    FLUSH(6),
+    FULL_HOUSE(7),
+    FOUR_OF_A_KIND(8),
+    STRAIGHT_FLUSH(9),
+    ROYAL_FLUSH(10);
 
     private int value;
 

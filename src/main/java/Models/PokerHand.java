@@ -12,6 +12,8 @@ public class PokerHand {
     List<Card> cards;
     private HandCombination handCombination;
 
+    private int playerID;
+
     public PokerHand() {
         cards = new ArrayList<>();
     }
@@ -30,5 +32,13 @@ public class PokerHand {
 
     public void setHandCombination(HandCombination handCombination) {
         this.handCombination = handCombination;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
     }
 }

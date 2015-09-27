@@ -1,5 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.Scanner;
 public class GameController {
     private boolean isGameRunning;
     private Scanner in = new Scanner(System.in);
-    private List<List<String>> handsList;
+    private List<List<String>> inputsList;
     PokerServices pokerServices = new PokerServices();
 
     int numberOfPlayers = 0;
@@ -21,7 +19,7 @@ public class GameController {
     }
 
     public void MainGameLoop() {
-        handsList = new ArrayList<List<String>>();
+        inputsList = new ArrayList<List<String>>();
 
         while (isGameRunning) {
             System.out.println("Please enter the # of players");
@@ -33,14 +31,14 @@ public class GameController {
                 System.out.println("enter a hand: ");
                 String input = in.nextLine();
                 List<String> inputList = Arrays.asList(input.split(" "));
-                while (!pokerServices.IsHandValid(inputList) && !pokerServices.IsHandContainsDuplicates(inputList, handsList)) {
+                while (!pokerServices.IsHandValid(inputList) && !pokerServices.IsHandContainsDuplicates(inputList, inputsList)) {
                     System.out.println("Invalid input, please enter a hand: ");
                     input = in.nextLine();
                     inputList = Arrays.asList(input.split(" "));
                 }
 
                 String playerId = inputList.get(0);
-                handsList.add(inputList);
+                inputsList.add(inputList);
                 numberOfHandsEntered++;
             }
             //TODO: Calculate scores and compare
