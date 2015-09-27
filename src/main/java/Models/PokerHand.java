@@ -3,12 +3,13 @@ package Models;
 import Enums.HandCombination;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Created by Tony on 9/23/2015.
  */
-public class PokerHand {
+public class PokerHand implements Comparable<PokerHand>{
     List<Card> cards;
     private HandCombination handCombination;
 
@@ -40,5 +41,10 @@ public class PokerHand {
 
     public void setPlayerID(int playerID) {
         this.playerID = playerID;
+    }
+
+    @Override
+    public int compareTo(PokerHand o) {
+        return this.getHandCombination().compareTo(o.getHandCombination());
     }
 }

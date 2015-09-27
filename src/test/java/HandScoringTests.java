@@ -1,3 +1,4 @@
+import Enums.HandCombination;
 import Enums.Rank;
 import Enums.Suit;
 import Models.Card;
@@ -5,6 +6,7 @@ import Models.PokerHand;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -44,6 +46,39 @@ public class HandScoringTests {
         pokerHand.setCards(cards);
 
         assertThat(pokerServices.CheckHandForStraightFlush(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsRoyalFlushBetterThanStraightFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand royalFlushHand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.KING, Suit.SPADES));
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.QUEEN, Suit.SPADES));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.JACK, Suit.SPADES));
+        royalFlushHand.setCards(cards);
+        pokerServices.ScoreHand(royalFlushHand);
+
+        PokerHand straightFlushHand = new PokerHand();
+        cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.TWO, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FOUR, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        straightFlushHand.setCards(cards);
+        pokerServices.ScoreHand(straightFlushHand);
+
+        handsList.add(straightFlushHand);
+        handsList.add(royalFlushHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0).getHandCombination(), is(HandCombination.ROYAL_FLUSH));
     }
 
     @Test

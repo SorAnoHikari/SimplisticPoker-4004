@@ -9,6 +9,8 @@ import java.util.*;
 import static java.util.stream.Collectors.toList;
 
 /**
+ * Main service class for poker logic
+ *
  * Created by Tony on 9/23/2015.
  */
 public class PokerServices {
@@ -16,6 +18,14 @@ public class PokerServices {
     public boolean IsHandValid(List<String> hand) {
         if (hand.size() != 6)
             return false;
+
+        try {
+            Integer.parseInt(hand.get(0));
+        }
+        catch (Exception e) {
+            return false;
+        }
+
         for (int i = 1; i <= 5; i++) {
             if (!IsCardValid(hand.get(i)))
                 return false;
@@ -52,22 +62,46 @@ public class PokerServices {
     }
     //</editor-fold>
 
-    public static List<List<String>> SortHandsByWinningOrder(List<List<String>> handsList) {
-        List<List<String>> sortedHand = new ArrayList<List<String>>();
+    /**
+     * Method to convert a list of strings into a pokerhand.
+     * This assumes your input is valid, so use the validation methods before this
+     * @param cardStringList
+     * @return
+     */
+    public PokerHand ConvertListToPokerHand(List<String> cardStringList) {
+        PokerHand hand = new PokerHand();
+        List<Card> cardList = new ArrayList<>();
+        for(String cardString : cardStringList) {
+            String[] r = cardString.split("(?=\\p{Upper})");
+            Rank rank = Rank.valueOf(r[0].toUpperCase());
+            Suit suit = Suit.valueOf(r[1].toUpperCase());
 
-        for (List<String> hand : handsList) {
-            PokerHand currentHand = new PokerHand();
-            for (int i = 1; i < hand.size(); i++) {
-                String[] r = hand.get(i).split("(?=\\p{Upper})");
-                Rank rank = Rank.valueOf(r[0].toUpperCase());
-                Suit suit = Suit.valueOf(r[1].toUpperCase());
-                currentHand.getCards().add(new Card(rank, suit));
-            }
+            cardList.add(new Card(rank, suit));
         }
-
-        return sortedHand;
+        hand.setCards(cardList);
+        return hand;
     }
 
+    public void ScoreHand(PokerHand pokerHand) {
+        if (CheckHandForRoyalFlush(pokerHand))
+            return;
+        if (CheckHandForStraightFlush(pokerHand))
+            return;
+        if (CheckHandForFourOfAKind(pokerHand))
+            return;
+        if (CheckHandForFlush(pokerHand))
+            return;
+        if (CheckHandForStraight(pokerHand))
+            return;
+        if (CheckHandForThreeOfAKind(pokerHand))
+            return;
+        if (CheckHandForPair(pokerHand))
+            return;
+        if (CheckHandForSingle(pokerHand))
+            return;
+    }
+
+    //<editor-fold desc="Hand scoring methods">
     public boolean CheckHandForRoyalFlush(PokerHand pokerHand) {
         if (pokerHand.getHandCombination() != null)
             return false;
@@ -195,22 +229,19 @@ public class PokerServices {
 
     private boolean isRanksInStraightFormat(PokerHand pokerHand) {
         List<Card> hand = pokerHand.getCards();
-        Collections.sort(hand, Card.Comparators.BY_RANK);
+        Collections.sort(hand, Card.CardComparators.BY_RANK);
 
         // Two scenarios to check if the high card in the straight is an Ace
         if (hand.get(0).getRank() == Rank.ACE) {
-            if (hand.get(1).getRank() == Rank.FIVE
+            return ((hand.get(1).getRank() == Rank.FIVE
                     && hand.get(2).getRank() == Rank.FOUR
                     && hand.get(3).getRank() == Rank.THREE
                     && hand.get(4).getRank() == Rank.TWO)
-                return true;
-            if (hand.get(1).getRank() == Rank.KING
+                ||
+                 (hand.get(1).getRank() == Rank.KING
                     && hand.get(2).getRank() == Rank.QUEEN
                     && hand.get(3).getRank() == Rank.JACK
-                    && hand.get(4).getRank() == Rank.TEN)
-                return true;
-
-            return false;
+                    && hand.get(4).getRank() == Rank.TEN));
         }
 
         for (int i = 1; i < 5; i++) {
@@ -221,4 +252,5 @@ public class PokerServices {
 
         return true;
     }
+    //</editor-fold>
 }

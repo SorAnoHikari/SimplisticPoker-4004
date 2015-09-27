@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import Models.Card;
+import Models.PokerHand;
+
+import java.util.*;
 
 /**
  * Created by Tony on 9/21/2015.
@@ -9,7 +9,9 @@ import java.util.Scanner;
 public class GameController {
     private boolean isGameRunning;
     private Scanner in = new Scanner(System.in);
+    // Consider removing this later
     private List<List<String>> inputsList;
+    private List<PokerHand> handsList;
     PokerServices pokerServices = new PokerServices();
 
     int numberOfPlayers = 0;
@@ -19,14 +21,16 @@ public class GameController {
     }
 
     public void MainGameLoop() {
-        inputsList = new ArrayList<List<String>>();
-
         while (isGameRunning) {
+            inputsList = new ArrayList<>();
+            handsList = new ArrayList<>();
+
             System.out.println("Please enter the # of players");
             String numOfPlayersString = in.nextLine();
             numberOfPlayers = Integer.parseInt(numOfPlayersString);
             int numberOfHandsEntered = 0;
 
+            /* Get inputs for the hands */
             while (numberOfPlayers != numberOfHandsEntered) {
                 System.out.println("enter a hand: ");
                 String input = in.nextLine();
@@ -37,11 +41,15 @@ public class GameController {
                     inputList = Arrays.asList(input.split(" "));
                 }
 
-                String playerId = inputList.get(0);
+                int playerId = Integer.parseInt(inputList.get(0));
+                PokerHand newHand = pokerServices.ConvertListToPokerHand(inputList);
+                newHand.setPlayerID(playerId);
+
                 inputsList.add(inputList);
                 numberOfHandsEntered++;
             }
             //TODO: Calculate scores and compare
+            Collections.sort(handsList);
         }
     }
 }

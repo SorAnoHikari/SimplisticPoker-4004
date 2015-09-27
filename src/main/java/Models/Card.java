@@ -26,7 +26,7 @@ public class Card {
         return suit;
     }
 
-    public static enum Comparators implements Comparator<Card> {
+    public static enum CardComparators implements Comparator<Card> {
         BY_SUIT {
             @Override
             public int compare(final Card o1, final Card o2) {
