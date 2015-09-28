@@ -1,7 +1,4 @@
 import Enums.HandCombination;
-import Enums.Rank;
-import Enums.Suit;
-import Models.Card;
 import Models.PokerHand;
 import TestServices.HandScoringTestServices;
 import org.junit.Test;
@@ -10,13 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Tony on 9/23/2015.
  */
-public class HandScoringTests {
+public class HandScoringTest {
     @Test
     public void IsRoyalFlush() {
         final PokerServices pokerServices = new PokerServices();
