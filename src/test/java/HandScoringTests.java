@@ -145,6 +145,44 @@ public class HandScoringTests {
     }
 
     @Test
+    public void IsStraightBetterThanPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand straightHand = HandScoringTestServices.CreateStraightHand();
+        pokerServices.ScoreHand(straightHand);
+
+        PokerHand pairHand = HandScoringTestServices.CreateOnePairHand();
+        pokerServices.ScoreHand(pairHand);
+
+        handsList.add(pairHand);
+        handsList.add(straightHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0).getHandCombination(), is(HandCombination.STRAIGHT));
+    }
+
+    @Test
+    public void IsSingleWorseThanPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand singleHand = HandScoringTestServices.CreateSingleHand();
+        pokerServices.ScoreHand(singleHand);
+
+        PokerHand pairHand = HandScoringTestServices.CreateOnePairHand();
+        pokerServices.ScoreHand(pairHand);
+
+        handsList.add(singleHand);
+        handsList.add(pairHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0).getHandCombination(), not(HandCombination.HIGH_CARD));
+    }
+
+    @Test
     public void IsHighStraightFlushBetterThanLowStraightFlush() {
         final PokerServices pokerServices = new PokerServices();
 
