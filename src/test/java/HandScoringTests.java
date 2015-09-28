@@ -72,6 +72,15 @@ public class HandScoringTests {
     }
 
     @Test
+    public void IsTwoPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = HandScoringTestServices.CreateTwoPairHand();
+
+        assertThat(pokerServices.CheckHandForTwoPair(pokerHand), is(true));
+    }
+
+    @Test
     public void IsPair() {
         final PokerServices pokerServices = new PokerServices();
 

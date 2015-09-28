@@ -190,6 +190,10 @@ public class PokerServices {
         return false;
     }
 
+    public boolean CheckHandForTwoPair(PokerHand pokerHand) {
+        return false;
+    }
+
     public boolean CheckHandForPair(PokerHand pokerHand) {
         if (pokerHand.getHandCombination() != null)
             return false;

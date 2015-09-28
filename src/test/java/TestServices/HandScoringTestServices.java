@@ -72,6 +72,18 @@ public class HandScoringTestServices {
         return hand;
     }
 
+    public static PokerHand CreateFullHouseHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.HEARTS));
+        hand.setCards(cards);
+        return hand;
+    }
+
     public static PokerHand CreateThreeOfAKindHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();
@@ -79,6 +91,18 @@ public class HandScoringTestServices {
         cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
         cards.add(new Card(Rank.ACE, Suit.HEARTS));
         cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
+    public static PokerHand CreateTwoPairHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.HEARTS));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
         cards.add(new Card(Rank.FIVE, Suit.SPADES));
         hand.setCards(cards);
         return hand;
