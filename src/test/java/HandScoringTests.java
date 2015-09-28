@@ -72,6 +72,15 @@ public class HandScoringTests {
     }
 
     @Test
+    public void IsNotFullHouse() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = HandScoringTestServices.CreateThreeOfAKindHand();
+
+        assertThat(pokerServices.CheckHandForFullHouse(pokerHand), is(false));
+    }
+
+    @Test
     public void IsThreeOfAKind() {
         final PokerServices pokerServices = new PokerServices();
 

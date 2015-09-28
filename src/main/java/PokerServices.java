@@ -173,7 +173,6 @@ public class PokerServices {
     }
 
     public boolean CheckHandForFullHouse(PokerHand pokerHand) {
-
         return false;
     }
 
