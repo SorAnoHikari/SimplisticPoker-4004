@@ -63,6 +63,15 @@ public class HandScoringTests {
     }
 
     @Test
+    public void IsFullHouse() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = HandScoringTestServices.CreateFullHouseHand();
+
+        assertThat(pokerServices.CheckHandForFullHouse(pokerHand), is(true));
+    }
+
+    @Test
     public void IsThreeOfAKind() {
         final PokerServices pokerServices = new PokerServices();
 
@@ -78,6 +87,15 @@ public class HandScoringTests {
         PokerHand pokerHand = HandScoringTestServices.CreateTwoPairHand();
 
         assertThat(pokerServices.CheckHandForTwoPair(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsNotTwoPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        PokerHand pokerHand = HandScoringTestServices.CreateOnePairHand();
+
+        assertThat(pokerServices.CheckHandForTwoPair(pokerHand), is(false));
     }
 
     @Test

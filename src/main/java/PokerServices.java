@@ -172,6 +172,11 @@ public class PokerServices {
         return false;
     }
 
+    public boolean CheckHandForFullHouse(PokerHand pokerHand) {
+
+        return false;
+    }
+
     public boolean CheckHandForThreeOfAKind(PokerHand pokerHand) {
         if (pokerHand.getHandCombination() != null)
             return false;
@@ -191,6 +196,27 @@ public class PokerServices {
     }
 
     public boolean CheckHandForTwoPair(PokerHand pokerHand) {
+        if (pokerHand.getHandCombination() != null)
+            return false;
+        List<Rank> ranks = pokerHand.getCards().stream().map(Card::getRank).collect(toList());
+        List<Rank> copyOfRanks = new ArrayList<>(ranks);
+        for (Rank rank : ranks) {
+            copyOfRanks.remove(rank);
+            if (copyOfRanks.contains(rank)) {
+                // Got the first pair, try to find a second now
+                copyOfRanks.remove(rank);
+                break;
+            }
+        }
+
+        List<Rank> newCopyOfRanks = new ArrayList<>(copyOfRanks);
+        for (Rank rank : copyOfRanks) {
+            newCopyOfRanks.remove(rank);
+            if (newCopyOfRanks.contains(rank)) {
+                pokerHand.setHandCombination(HandCombination.TWO_PAIR);
+                return true;
+            }
+        }
         return false;
     }
 
