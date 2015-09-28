@@ -36,6 +36,18 @@ public class HandScoringTestServices {
         return hand;
     }
 
+    public static PokerHand CreateHighStraightFlushHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.KING, Suit.SPADES));
+        cards.add(new Card(Rank.QUEEN, Suit.SPADES));
+        cards.add(new Card(Rank.JACK, Suit.SPADES));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
     public static PokerHand CreateStraightHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();
@@ -63,6 +75,18 @@ public class HandScoringTestServices {
     public static PokerHand CreateFlushHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.TWO, Suit.SPADES));
+        cards.add(new Card(Rank.NINE, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
+    public static PokerHand CreateHighFlushHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
         cards.add(new Card(Rank.ACE, Suit.SPADES));
         cards.add(new Card(Rank.QUEEN, Suit.SPADES));
         cards.add(new Card(Rank.THREE, Suit.SPADES));
@@ -84,6 +108,18 @@ public class HandScoringTestServices {
         return hand;
     }
 
+    public static PokerHand CreateHighFourOfAKindHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.KING, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
     public static PokerHand CreateFullHouseHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();
@@ -92,6 +128,18 @@ public class HandScoringTestServices {
         cards.add(new Card(Rank.ACE, Suit.HEARTS));
         cards.add(new Card(Rank.THREE, Suit.SPADES));
         cards.add(new Card(Rank.THREE, Suit.HEARTS));
+        hand.setCards(cards);
+        return hand;
+    }
+
+    public static PokerHand CreateHighFullHouseHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.KING, Suit.SPADES));
+        cards.add(new Card(Rank.KING, Suit.HEARTS));
         hand.setCards(cards);
         return hand;
     }
@@ -108,6 +156,18 @@ public class HandScoringTestServices {
         return hand;
     }
 
+    public static PokerHand CreateHighThreeOfAKindHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.ACE, Suit.HEARTS));
+        cards.add(new Card(Rank.KING, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
     public static PokerHand CreateTwoPairHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();
@@ -115,6 +175,18 @@ public class HandScoringTestServices {
         cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
         cards.add(new Card(Rank.TEN, Suit.HEARTS));
         cards.add(new Card(Rank.TEN, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
+    public static PokerHand CreateHighTwoPairHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.KING, Suit.HEARTS));
+        cards.add(new Card(Rank.KING, Suit.SPADES));
         cards.add(new Card(Rank.FIVE, Suit.SPADES));
         hand.setCards(cards);
         return hand;

@@ -125,6 +125,9 @@ public class PokerServices {
             return false;
         if (isAllCardsSameSuit(pokerHand) && isRanksInStraightFormat(pokerHand)) {
             pokerHand.setHandCombination(HandCombination.STRAIGHT_FLUSH);
+            List<Card> hand = pokerHand.getCards();
+            Collections.sort(hand, Card.CardComparators.BY_RANK);
+            pokerHand.setHandRank(hand.get(0).getRank());
             return true;
         }
         return false;
@@ -135,6 +138,9 @@ public class PokerServices {
             return false;
         if (isAllCardsSameSuit(pokerHand)) {
             pokerHand.setHandCombination(HandCombination.FLUSH);
+            List<Card> hand = pokerHand.getCards();
+            Collections.sort(hand, Card.CardComparators.BY_RANK);
+            pokerHand.setHandRank(hand.get(0).getRank());
             return true;
         }
         return false;
@@ -164,7 +170,10 @@ public class PokerServices {
                     copyOfRanks.remove(rank);
                     if (copyOfRanks.contains(rank)) {
                         pokerHand.setHandCombination(HandCombination.FOUR_OF_A_KIND);
-                        PopulateHandRank(pokerHand);
+                        List<Card> hand = pokerHand.getCards();
+                        Collections.sort(hand, Card.CardComparators.BY_RANK);
+                        pokerHand.setHandRank(hand.get(0).getRank());
+                        pokerHand.setKickerRank(hand.get(4).getRank());
                         return true;
                     }
                 }
@@ -188,6 +197,11 @@ public class PokerServices {
                 && (hand.get(2).getRank() == hand.get(1).getRank())
                 && (hand.get(1).getRank() == hand.get(0).getRank()));
 
+        if (twoThreeFullHouse || threeTwoFullHouse) {
+            pokerHand.setHandRank(hand.get(0).getRank());
+            pokerHand.setKickerRank(hand.get(3).getRank());
+        }
+
         return twoThreeFullHouse || threeTwoFullHouse;
     }
 
@@ -202,7 +216,10 @@ public class PokerServices {
                 copyOfRanks.remove(rank);
                 if (copyOfRanks.contains(rank)) {
                     pokerHand.setHandCombination(HandCombination.THREE_OF_A_KIND);
-                    PopulateHandRank(pokerHand);
+                    List<Card> hand = pokerHand.getCards();
+                    Collections.sort(hand, Card.CardComparators.BY_RANK);
+                    pokerHand.setHandRank(hand.get(0).getRank());
+                    pokerHand.setKickerRank(hand.get(3).getRank());
                     return true;
                 }
             }
@@ -229,6 +246,10 @@ public class PokerServices {
             newCopyOfRanks.remove(rank);
             if (newCopyOfRanks.contains(rank)) {
                 pokerHand.setHandCombination(HandCombination.TWO_PAIR);
+                List<Card> hand = pokerHand.getCards();
+                Collections.sort(hand, Card.CardComparators.BY_RANK);
+                pokerHand.setHandRank(hand.get(0).getRank());
+                pokerHand.setKickerRank(hand.get(2).getRank());
                 return true;
             }
         }
@@ -244,7 +265,10 @@ public class PokerServices {
             copyOfRanks.remove(rank);
             if (copyOfRanks.contains(rank)) {
                 pokerHand.setHandCombination(HandCombination.ONE_PAIR);
-                PopulateHandRank(pokerHand);
+                List<Card> hand = pokerHand.getCards();
+                Collections.sort(hand, Card.CardComparators.BY_RANK);
+                pokerHand.setHandRank(hand.get(0).getRank());
+                pokerHand.setKickerRank(hand.get(2).getRank());
                 return true;
             }
         }
@@ -262,7 +286,10 @@ public class PokerServices {
                 return false;
             }
         }
-        PopulateHandRank(pokerHand);
+        List<Card> hand = pokerHand.getCards();
+        Collections.sort(hand, Card.CardComparators.BY_RANK);
+        pokerHand.setHandRank(hand.get(0).getRank());
+        pokerHand.setKickerRank(hand.get(1).getRank());
         pokerHand.setHandCombination(HandCombination.HIGH_CARD);
         return true;
     }
@@ -307,12 +334,6 @@ public class PokerServices {
         pokerHand.setHandRank(hand.get(0).getRank());
 
         return true;
-    }
-
-    private void PopulateHandRank(PokerHand pokerHand) {
-        List<Card> hand = pokerHand.getCards();
-        Collections.sort(hand, Card.CardComparators.BY_RANK);
-        pokerHand.setHandRank(hand.get(0).getRank());
     }
     //</editor-fold>
 }

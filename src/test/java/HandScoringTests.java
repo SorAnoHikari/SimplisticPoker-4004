@@ -145,6 +145,63 @@ public class HandScoringTests {
     }
 
     @Test
+    public void IsHighStraightFlushBetterThanLowStraightFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateStraightFlushHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighStraightFlushHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
+    public void IsHighFullHouseBetterThanLowFullHouse() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateFullHouseHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighFullHouseHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
+    public void IsHighFlushBetterThanLowFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateFlushHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighFlushHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
     public void IsHighStraightBetterThanLowStraight() {
         final PokerServices pokerServices = new PokerServices();
 
@@ -163,7 +220,65 @@ public class HandScoringTests {
         assertThat(handsList.get(0), is(highStraightHand));
     }
 
-    @Test void IsHighPairBetterThanLowPair() {
+    @Test
+    public void IsHighFourOfAKindBetterThanLowFourOfAKind() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateFourOfAKindHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighFourOfAKindHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
+    public void IsHighTripleBetterThanLowTriple() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateThreeOfAKindHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighThreeOfAKindHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
+    public void IsHighTwoPairBetterThanLowTwoPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowHand = HandScoringTestServices.CreateTwoPairHand();
+        pokerServices.ScoreHand(lowHand);
+
+        PokerHand highHand = HandScoringTestServices.CreateHighTwoPairHand();
+        pokerServices.ScoreHand(highHand);
+
+        handsList.add(lowHand);
+        handsList.add(highHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highHand));
+    }
+
+    @Test
+    public void IsHighPairBetterThanLowPair() {
         final PokerServices pokerServices = new PokerServices();
 
         List<PokerHand> handsList = new ArrayList<>();

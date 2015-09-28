@@ -56,6 +56,14 @@ public class PokerHand implements Comparable<PokerHand>{
         this.handRank = handRank;
     }
 
+    public Rank getKickerRank() {
+        return kickerRank;
+    }
+
+    public void setKickerRank(Rank kickerRank) {
+        this.kickerRank = kickerRank;
+    }
+
     @Override
     public int compareTo(PokerHand o) {
         if (!this.equals(o))
