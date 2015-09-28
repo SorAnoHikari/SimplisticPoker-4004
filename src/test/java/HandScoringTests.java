@@ -36,25 +36,6 @@ public class HandScoringTests {
     }
 
     @Test
-    public void IsRoyalFlushBetterThanStraightFlush() {
-        final PokerServices pokerServices = new PokerServices();
-
-        List<PokerHand> handsList = new ArrayList<>();
-        PokerHand royalFlushHand = HandScoringTestServices.CreateRoyalFlushHand();
-        pokerServices.ScoreHand(royalFlushHand);
-
-        PokerHand straightFlushHand = HandScoringTestServices.CreateStraightFlushHand();
-        pokerServices.ScoreHand(straightFlushHand);
-
-        handsList.add(straightFlushHand);
-        handsList.add(royalFlushHand);
-
-        Collections.sort(handsList);
-
-        assertThat(handsList.get(0).getHandCombination(), is(HandCombination.ROYAL_FLUSH));
-    }
-
-    @Test
     public void IsStraight() {
         final PokerServices pokerServices = new PokerServices();
 
@@ -106,5 +87,24 @@ public class HandScoringTests {
         PokerHand pokerHand = HandScoringTestServices.CreateSingleHand();
 
         assertThat(pokerServices.CheckHandForSingle(pokerHand), is(true));
+    }
+
+    @Test
+    public void IsRoyalFlushBetterThanStraightFlush() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand royalFlushHand = HandScoringTestServices.CreateRoyalFlushHand();
+        pokerServices.ScoreHand(royalFlushHand);
+
+        PokerHand straightFlushHand = HandScoringTestServices.CreateStraightFlushHand();
+        pokerServices.ScoreHand(straightFlushHand);
+
+        handsList.add(straightFlushHand);
+        handsList.add(royalFlushHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0).getHandCombination(), is(HandCombination.ROYAL_FLUSH));
     }
 }

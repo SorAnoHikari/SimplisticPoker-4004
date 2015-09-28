@@ -48,7 +48,7 @@ public class PokerServices {
     }
 
     public boolean IsHandContainsDuplicates(List<String> hand, List<List<String>> handList) {
-        Set<String> handSet = new HashSet<String>(hand);
+        Set<String> handSet = new HashSet<>(hand);
         if (handSet.size() != hand.size())
             return true;
         for(String card : hand) {
@@ -71,8 +71,8 @@ public class PokerServices {
     public PokerHand ConvertListToPokerHand(List<String> cardStringList) {
         PokerHand hand = new PokerHand();
         List<Card> cardList = new ArrayList<>();
-        for(String cardString : cardStringList) {
-            String[] r = cardString.split("(?=\\p{Upper})");
+        for(int i = 1; i <= 5; i++) {
+            String[] r = cardStringList.get(i).split("(?=\\p{Upper})");
             Rank rank = Rank.valueOf(r[0].toUpperCase());
             Suit suit = Suit.valueOf(r[1].toUpperCase());
 

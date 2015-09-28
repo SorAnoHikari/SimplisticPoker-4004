@@ -47,4 +47,14 @@ public class PokerHand implements Comparable<PokerHand>{
     public int compareTo(PokerHand o) {
         return o.getHandCombination().compareTo(this.getHandCombination());
     }
+
+    @Override
+    public String toString() {
+        String returnString = "Player " + Integer.toString(playerID) + ": ";
+        for (Card card : cards) {
+            returnString += card.toString() + " ";
+        }
+        returnString += " (" + this.handCombination + ")";
+        return returnString;
+    }
 }

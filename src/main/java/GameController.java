@@ -25,7 +25,7 @@ public class GameController {
             inputsList = new ArrayList<>();
             handsList = new ArrayList<>();
 
-            System.out.println("Please enter the # of players");
+            System.out.println("\n\nPlease enter the # of players");
             String numOfPlayersString = in.nextLine();
             numberOfPlayers = Integer.parseInt(numOfPlayersString);
             int numberOfHandsEntered = 0;
@@ -35,7 +35,7 @@ public class GameController {
                 System.out.println("enter a hand: ");
                 String input = in.nextLine();
                 List<String> inputList = Arrays.asList(input.split(" "));
-                while (!pokerServices.IsHandValid(inputList) && !pokerServices.IsHandContainsDuplicates(inputList, inputsList)) {
+                while (!pokerServices.IsHandValid(inputList) || pokerServices.IsHandContainsDuplicates(inputList, inputsList)) {
                     System.out.println("Invalid input, please enter a hand: ");
                     input = in.nextLine();
                     inputList = Arrays.asList(input.split(" "));
@@ -44,12 +44,22 @@ public class GameController {
                 int playerId = Integer.parseInt(inputList.get(0));
                 PokerHand newHand = pokerServices.ConvertListToPokerHand(inputList);
                 newHand.setPlayerID(playerId);
+                pokerServices.ScoreHand(newHand);
 
+                handsList.add(newHand);
                 inputsList.add(inputList);
                 numberOfHandsEntered++;
             }
-            //TODO: Calculate scores and compare
             Collections.sort(handsList);
+
+            for (PokerHand hand : handsList) {
+                System.out.println(hand.toString());
+            }
+
+            System.out.println("\nAnother round? (Y/N)");
+            String playAgainInput = in.nextLine();
+            if (playAgainInput.toLowerCase().equals("n"))
+                isGameRunning = false;
         }
     }
 }

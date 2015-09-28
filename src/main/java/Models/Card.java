@@ -1,6 +1,6 @@
 package Models;
 
-import Enums.HandCombination;
+import static org.apache.commons.lang3.StringUtils.capitalize;
 import Enums.Rank;
 import Enums.Suit;
 
@@ -39,5 +39,10 @@ public class Card {
                 return -1 * o1.getRank().compareTo(o2.getRank());
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return capitalize(this.rank.name().toLowerCase()) + capitalize(this.suit.name().toLowerCase());
     }
 }

@@ -43,4 +43,21 @@ public class InputValidationTest {
 
         assertThat(pokerServices.IsHandContainsDuplicates(hand, handList), is(true));
     }
+
+    @Test
+    public void CanDetectDuplicateIDs() {
+        final PokerServices pokerServices = new PokerServices();
+        String firstInput = "1 AceSpades TwoDiamonds QueenHearts JackSpades TenDiamonds";
+        String secondInput = "1 KingHearts TwoSpades TwoHearts TwoClubs ThreeClubs";
+
+        List<String> firstHand = Arrays.asList(firstInput.split(" "));
+        List<String> secondHand = Arrays.asList(secondInput.split(" "));
+
+        List<List<String>> handList = new ArrayList<>();
+        handList.add(firstHand);
+        handList.add(secondHand);
+
+        assertThat(pokerServices.IsHandContainsDuplicates(secondHand, handList), is(true));
+
+    }
 }
