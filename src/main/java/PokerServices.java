@@ -173,7 +173,21 @@ public class PokerServices {
     }
 
     public boolean CheckHandForFullHouse(PokerHand pokerHand) {
-        return false;
+        if (pokerHand.getHandCombination() != null)
+            return false;
+
+        List<Card> hand = pokerHand.getCards();
+        Collections.sort(hand, Card.CardComparators.BY_RANK);
+
+        boolean twoThreeFullHouse = ((hand.get(0).getRank() == hand.get(1).getRank())
+                && (hand.get(2).getRank() == hand.get(3).getRank())
+                && (hand.get(3).getRank() == hand.get(4).getRank()));
+
+        boolean threeTwoFullHouse = ((hand.get(4).getRank() == hand.get(3).getRank())
+                && (hand.get(2).getRank() == hand.get(1).getRank())
+                && (hand.get(1).getRank() == hand.get(0).getRank()));
+
+        return twoThreeFullHouse || threeTwoFullHouse;
     }
 
     public boolean CheckHandForThreeOfAKind(PokerHand pokerHand) {
