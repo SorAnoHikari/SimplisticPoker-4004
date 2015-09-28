@@ -48,6 +48,13 @@ public class PokerServices {
     }
 
     public boolean IsHandContainsDuplicates(List<String> hand, List<List<String>> handList) {
+        String id = hand.get(0);
+        for (List<String> otherHand : handList)
+        {
+            if (otherHand.contains(id))
+                return true;
+        }
+
         Set<String> handSet = new HashSet<>(hand);
         if (handSet.size() != hand.size())
             return true;
