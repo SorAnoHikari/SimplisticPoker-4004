@@ -16,6 +16,8 @@ public class PokerHand implements Comparable<PokerHand>{
 
     private Rank handRank;
 
+    private Rank kickerRank;
+
     private int playerID;
 
     public PokerHand() {

@@ -132,6 +132,18 @@ public class HandScoringTestServices {
         return hand;
     }
 
+    public static PokerHand CreateHighOnePairHand() {
+        PokerHand hand = new PokerHand();
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.KING, Suit.HEARTS));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        hand.setCards(cards);
+        return hand;
+    }
+
     public static PokerHand CreateSingleHand() {
         PokerHand hand = new PokerHand();
         List<Card> cards = new ArrayList<>();

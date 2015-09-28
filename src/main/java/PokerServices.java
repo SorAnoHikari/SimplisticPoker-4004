@@ -164,6 +164,7 @@ public class PokerServices {
                     copyOfRanks.remove(rank);
                     if (copyOfRanks.contains(rank)) {
                         pokerHand.setHandCombination(HandCombination.FOUR_OF_A_KIND);
+                        PopulateHandRank(pokerHand);
                         return true;
                     }
                 }
@@ -201,6 +202,7 @@ public class PokerServices {
                 copyOfRanks.remove(rank);
                 if (copyOfRanks.contains(rank)) {
                     pokerHand.setHandCombination(HandCombination.THREE_OF_A_KIND);
+                    PopulateHandRank(pokerHand);
                     return true;
                 }
             }
@@ -242,6 +244,7 @@ public class PokerServices {
             copyOfRanks.remove(rank);
             if (copyOfRanks.contains(rank)) {
                 pokerHand.setHandCombination(HandCombination.ONE_PAIR);
+                PopulateHandRank(pokerHand);
                 return true;
             }
         }
@@ -259,6 +262,7 @@ public class PokerServices {
                 return false;
             }
         }
+        PopulateHandRank(pokerHand);
         pokerHand.setHandCombination(HandCombination.HIGH_CARD);
         return true;
     }
@@ -283,6 +287,7 @@ public class PokerServices {
 
         // Two scenarios to check if the high card in the straight is an Ace
         if (hand.get(0).getRank() == Rank.ACE) {
+            pokerHand.setHandRank(hand.get(1).getRank());
             return ((hand.get(1).getRank() == Rank.FIVE
                     && hand.get(2).getRank() == Rank.FOUR
                     && hand.get(3).getRank() == Rank.THREE
@@ -299,8 +304,15 @@ public class PokerServices {
                 return false;
             }
         }
+        pokerHand.setHandRank(hand.get(0).getRank());
 
         return true;
+    }
+
+    private void PopulateHandRank(PokerHand pokerHand) {
+        List<Card> hand = pokerHand.getCards();
+        Collections.sort(hand, Card.CardComparators.BY_RANK);
+        pokerHand.setHandRank(hand.get(0).getRank());
     }
     //</editor-fold>
 }

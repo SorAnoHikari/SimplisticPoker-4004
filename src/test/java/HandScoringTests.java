@@ -163,6 +163,24 @@ public class HandScoringTests {
         assertThat(handsList.get(0), is(highStraightHand));
     }
 
+    @Test void IsHighPairBetterThanLowPair() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowPairHand = HandScoringTestServices.CreateOnePairHand();
+        pokerServices.ScoreHand(lowPairHand);
+
+        PokerHand highPairHand = HandScoringTestServices.CreateHighOnePairHand();
+        pokerServices.ScoreHand(highPairHand);
+
+        handsList.add(lowPairHand);
+        handsList.add(highPairHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highPairHand));
+    }
+
     @Test
     public void IsHighSingleBetterThanLowSingle() {
         final PokerServices pokerServices = new PokerServices();
