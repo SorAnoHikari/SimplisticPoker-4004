@@ -4,7 +4,6 @@ import Enums.HandCombination;
 import Enums.Rank;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -17,6 +16,12 @@ public class PokerHand implements Comparable<PokerHand>{
     private Rank handRank;
 
     private Rank kickerRank;
+
+    private Rank secondKickerRank;
+
+    private Rank thirdKickerRank;
+
+    private Rank fourthKickerRank;
 
     private int playerID;
 
@@ -64,12 +69,44 @@ public class PokerHand implements Comparable<PokerHand>{
         this.kickerRank = kickerRank;
     }
 
+    public Rank getSecondKickerRank() {
+        return secondKickerRank;
+    }
+
+    public void setSecondKickerRank(Rank secondKickerRank) {
+        this.secondKickerRank = secondKickerRank;
+    }
+
+    public Rank getThirdKickerRank() {
+        return thirdKickerRank;
+    }
+
+    public void setThirdKickerRank(Rank thirdKickerRank) {
+        this.thirdKickerRank = thirdKickerRank;
+    }
+
+    public Rank getFourthKickerRank() {
+        return fourthKickerRank;
+    }
+
+    public void setFourthKickerRank(Rank fourthKickerRank) {
+        this.fourthKickerRank = fourthKickerRank;
+    }
+
     @Override
     public int compareTo(PokerHand o) {
         if (!this.equals(o))
             return o.getHandCombination().compareTo(this.getHandCombination());
+        if (!this.getHandRank().equals(o.getHandRank()))
+            return Integer.compare(o.getHandRank().getValue(), this.getHandRank().getValue());
+        if (!this.getKickerRank().equals(o.getKickerRank()))
+            return Integer.compare(o.getKickerRank().getValue(), this.getKickerRank().getValue());
+        if (!this.getSecondKickerRank().equals(o.getSecondKickerRank()))
+            return Integer.compare(o.getSecondKickerRank().getValue(), this.getSecondKickerRank().getValue());
+        if (!this.getThirdKickerRank().equals(o.getThirdKickerRank()))
+            return Integer.compare(o.getThirdKickerRank().getValue(), this.getThirdKickerRank().getValue());
 
-        return Integer.compare(o.getHandRank().getValue(), this.getHandRank().getValue());
+        return Integer.compare(o.getFourthKickerRank().getValue(), this.getFourthKickerRank().getValue());
     }
 
     @Override

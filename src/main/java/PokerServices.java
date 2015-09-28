@@ -220,6 +220,7 @@ public class PokerServices {
                     Collections.sort(hand, Card.CardComparators.BY_RANK);
                     pokerHand.setHandRank(hand.get(0).getRank());
                     pokerHand.setKickerRank(hand.get(3).getRank());
+                    pokerHand.setSecondKickerRank(hand.get(4).getRank());
                     return true;
                 }
             }
@@ -250,6 +251,7 @@ public class PokerServices {
                 Collections.sort(hand, Card.CardComparators.BY_RANK);
                 pokerHand.setHandRank(hand.get(0).getRank());
                 pokerHand.setKickerRank(hand.get(2).getRank());
+                pokerHand.setSecondKickerRank(hand.get(4).getRank());
                 return true;
             }
         }
@@ -269,6 +271,8 @@ public class PokerServices {
                 Collections.sort(hand, Card.CardComparators.BY_RANK);
                 pokerHand.setHandRank(hand.get(0).getRank());
                 pokerHand.setKickerRank(hand.get(2).getRank());
+                pokerHand.setSecondKickerRank(hand.get(3).getRank());
+                pokerHand.setThirdKickerRank(hand.get(4).getRank());
                 return true;
             }
         }
@@ -290,6 +294,9 @@ public class PokerServices {
         Collections.sort(hand, Card.CardComparators.BY_RANK);
         pokerHand.setHandRank(hand.get(0).getRank());
         pokerHand.setKickerRank(hand.get(1).getRank());
+        pokerHand.setSecondKickerRank(hand.get(2).getRank());
+        pokerHand.setThirdKickerRank(hand.get(3).getRank());
+        pokerHand.setFourthKickerRank(hand.get(4).getRank());
         pokerHand.setHandCombination(HandCombination.HIGH_CARD);
         return true;
     }
