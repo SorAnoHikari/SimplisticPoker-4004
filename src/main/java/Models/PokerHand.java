@@ -1,6 +1,7 @@
 package Models;
 
 import Enums.HandCombination;
+import Enums.Rank;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,6 +13,8 @@ import java.util.List;
 public class PokerHand implements Comparable<PokerHand>{
     List<Card> cards;
     private HandCombination handCombination;
+
+    private Rank handRank;
 
     private int playerID;
 
@@ -43,9 +46,29 @@ public class PokerHand implements Comparable<PokerHand>{
         this.playerID = playerID;
     }
 
+    public Rank getHandRank() {
+        return handRank;
+    }
+
+    public void setHandRank(Rank handRank) {
+        this.handRank = handRank;
+    }
+
     @Override
     public int compareTo(PokerHand o) {
-        return o.getHandCombination().compareTo(this.getHandCombination());
+        if (!this.equals(o))
+            return o.getHandCombination().compareTo(this.getHandCombination());
+
+        return Integer.compare(o.getHandRank().getValue(), this.getHandRank().getValue());
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        if (!(other instanceof PokerHand)) {
+            return false;
+        }
+        final PokerHand otherHand = (PokerHand) other;
+        return this.getHandCombination().equals(otherHand.getHandCombination());
     }
 
     @Override

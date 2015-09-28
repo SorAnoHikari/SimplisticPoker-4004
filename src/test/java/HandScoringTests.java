@@ -143,4 +143,42 @@ public class HandScoringTests {
 
         assertThat(handsList.get(0).getHandCombination(), is(HandCombination.ROYAL_FLUSH));
     }
+
+    @Test
+    public void IsHighStraightBetterThanLowStraight() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowStraightHand = HandScoringTestServices.CreateStraightHand();
+        pokerServices.ScoreHand(lowStraightHand);
+
+        PokerHand highStraightHand = HandScoringTestServices.CreateHighStraightHand();
+        pokerServices.ScoreHand(highStraightHand);
+
+        handsList.add(lowStraightHand);
+        handsList.add(highStraightHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highStraightHand));
+    }
+
+    @Test
+    public void IsHighSingleBetterThanLowSingle() {
+        final PokerServices pokerServices = new PokerServices();
+
+        List<PokerHand> handsList = new ArrayList<>();
+        PokerHand lowSingleHand = HandScoringTestServices.CreateSingleHand();
+        pokerServices.ScoreHand(lowSingleHand);
+
+        PokerHand highSingleHand = HandScoringTestServices.CreateHighSingleHand();
+        pokerServices.ScoreHand(highSingleHand);
+
+        handsList.add(lowSingleHand);
+        handsList.add(highSingleHand);
+
+        Collections.sort(handsList);
+
+        assertThat(handsList.get(0), is(highSingleHand));
+    }
 }
