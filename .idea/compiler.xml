@@ -22,10 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="SimplisticPoker-4004" />
+        <module name="PokerUtils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="PokerUtils" target="1.8" />
       <module name="SimplisticPoker-4004" target="1.8" />
     </bytecodeTargetLevel>
   </component>
