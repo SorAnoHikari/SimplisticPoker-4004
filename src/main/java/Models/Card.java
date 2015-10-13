@@ -1,11 +1,11 @@
 package Models;
 
-import static org.apache.commons.lang3.StringUtils.capitalize;
 import Enums.Rank;
 import Enums.Suit;
 
 import java.util.Comparator;
 
+import static com.sun.xml.internal.ws.util.StringUtils.capitalize;
 /**
  * Created by Tony on 9/23/2015.
  */

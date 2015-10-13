@@ -1,6 +1,6 @@
 package Enums;
 
-import static org.apache.commons.lang3.StringUtils.capitalize;
+import static com.sun.xml.internal.ws.util.StringUtils.capitalize;
 
 /**
  * Created by Tony on 9/23/2015.
